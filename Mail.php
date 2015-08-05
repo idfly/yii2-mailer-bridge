@@ -9,18 +9,22 @@ class Mail
 
     public $useFileTransport = false;
 
+    public $mailerFrom = '';
+
     public function create()
     {
-        return $this->_getMailerInstance();
+        $mailer = new \yii\swiftmailer\Mailer;
+        $mailer->useFileTransport = $this->useFileTransport;
+        return $mailer;
     }
 
     public function send($text, $options)
     {
-        $mailer = $this->_getMailerInstance();
+        $mailer = $this->create();
 
         $message = $mailer->compose();
 
-        $from = ArrayHelper::getValue($options, 'from', 'from');
+        $from = ArrayHelper::getValue($options, 'from', $this->mailerFrom);
         $to = ArrayHelper::getValue($options, 'to', 'to');
         $subject = ArrayHelper::getValue($options, 'subject', 'subject');
         $type = ArrayHelper::getValue($options, 'type', 'html');
@@ -37,12 +41,5 @@ class Mail
             setSubject($subject);
 
         return $mailer->send($message);
-    }
-
-    protected function _getMailerInstance()
-    {
-        $mailer = new \yii\swiftmailer\Mailer;
-        $mailer->useFileTransport = $this->useFileTransport;
-        return $mailer;
     }
 }
