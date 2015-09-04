@@ -1,29 +1,26 @@
+# yii2-mailer-bridge
+
 Описание
 ========
 
 Модуль для yii2 для отправки писем. Работает поверх swiftmail.
 
-Установка
-=========
+## Установка
 
-Поместить в composer.json в секцию requrie:
+1. В проектный `composer.json` добавить в секцию `require`:
 
-```
-"idfly/yii2-mailer-bridge": "dev-master",
-```
+        "idfly/yii2-mailer-bridge": "dev-master",
 
-Поместить в composer.json в секцию repositories:
+2. В секцию `repositories`:
 
-```
-{
-    "type": "git",
-    "url": "git@bitbucket.org:idfly/yii2-mailer-bridge.git"
-}
-```
+        {
+            "type": "git",
+            "url": "git@bitbucket.org:idfly/yii2-mailer-bridge.git"
+        }
 
-Выполнить composer update.
+3. Выполнить `composer update`
 
-Поместить в конфиг:
+4. Поместить в конфиг:
 
 ```
 $config['components']['mail'] = [
