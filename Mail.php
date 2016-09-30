@@ -35,7 +35,7 @@ class Mail
             $message->setTextBody($text);
         }
 
-        if ($options['attach']) {
+        if (!empty($options['attach'])) {
             foreach ($options['attach'] as $attachOptions) {
                 if (!empty($attachOptions['path'])) {
                     $message->attach($attachOptions['path'], $attachOptions);
